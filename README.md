@@ -5,7 +5,7 @@ Un solo proyecto con dos partes que comparten datos:
 - **Juego** de Flappy Bird que se juega en la terminal (con `curses`).
 - **Gestor** de jugadores y partidas: medallas, monedas, niveles, skins, reportes, JSON, CSV/TXT y bitácora.
 
-Lo que ganas jugando (puntaje, monedas, nivel, récord) aparece en el gestor, y las skins que compras en el gestor se ven en el juego.
+Lo que ganas mientras estas jugando (puntaje, monedas, nivel, récord) aparece en el gestor, y las skins que compras en el gestor se ven en el juego.
 
 ## Cómo ejecutar
 
