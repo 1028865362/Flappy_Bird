@@ -2,14 +2,14 @@
 
 Un solo proyecto con dos partes que comparten datos:
 
-* **Juego** de Flappy Bird que se juega en la terminal (con `curses`).
-* **Gestor** de jugadores y partidas: medallas, monedas, niveles, skins, reportes, JSON, CSV/TXT y bitácora.
+- **Juego** de Flappy Bird que se juega en la terminal (con `curses`).
+- **Gestor** de jugadores y partidas: medallas, monedas, niveles, skins, reportes, JSON, CSV/TXT y bitácora.
 
 Lo que ganas jugando (puntaje, monedas, nivel, récord) aparece en el gestor, y las skins que compras en el gestor se ven en el juego.
 
 ## Cómo ejecutar
 
-```
+```bash
 python main.py                                  # aplicación completa (menú principal)
 python -m unittest discover -s tests -v         # pruebas
 python -c "from gestor.interfaz import ejecutar; ejecutar()"   # solo el gestor, sin juego
@@ -19,7 +19,7 @@ Ejecuta los comandos desde esta carpeta. (Las rutas de datos ya no dependen de e
 
 **Windows:** `curses` no viene incluido. Instálalo una sola vez:
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
@@ -48,7 +48,7 @@ Al chocar el pájaro se convierte en `✖` (`X` en ASCII).
 
 ## Estructura
 
-```
+```text
 flappy_gestor/
 ├── main.py              ← punto de entrada
 ├── aplicacion.py        ← menú principal: une juego y gestor
@@ -84,6 +84,7 @@ Variables de entorno opcionales: `FLAPPY_DATOS=/otra/carpeta` cambia dónde se g
 ## Mapa de temas de los laboratorios
 
 ### 01 · Primeros pasos con Python
+
 | Tema | Dónde verlo |
 |---|---|
 | Variables, tipos, constantes por convención | `gestor/reglas.py` (`PUNTAJE_MAX`, `SKINS`), `juego/modelo.py` (`GRAVEDAD`, `ANCHO`) |
@@ -92,6 +93,7 @@ Variables de entorno opcionales: `FLAPPY_DATOS=/otra/carpeta` cambia dónde se g
 | `input()`, `print()`, f-strings | `interfaz.pedir`, `aplicacion.opcion_jugar` |
 
 ### 02 · Decisiones, ciclos y colecciones
+
 | Tema | Dónde verlo |
 |---|---|
 | Comparaciones y operadores lógicos (`and`, `or`, `not`) | `reglas.categoria_para` |
@@ -99,25 +101,27 @@ Variables de entorno opcionales: `FLAPPY_DATOS=/otra/carpeta` cambia dónde se g
 | `for` y `while` | `reglas.medalla_para`; bucles del menú y de `controlador._partida` |
 | Listas, tuplas, diccionarios | `_MEDALLAS` (lista de tuplas), `SKINS`, `Jugador.skins` (tupla) |
 | **Conjuntos** | `repositorio.verificar_integridad`, `reportes.jugadores_sin_partidas` |
-| Estructuras anidadas | el JSON (dict con listas de dicts), `reportes.resumen_por_dificultad` |
+| Estructuras anidadas | El JSON (dict con listas de dicts), `reportes.resumen_por_dificultad` |
 | Comprensiones (lista, dict, **set**) | `almacenamiento.cargar`, `reportes.resumen_por_dificultad`, `repositorio.verificar_integridad` |
 
 ### 03 · Funciones, módulos y POO
+
 | Tema | Dónde verlo |
 |---|---|
 | Funciones, parámetros, retorno | `reglas.py`, `validadores.py` (valores por defecto en `reportes.ranking`) |
 | **Alcance de variables** (`global`, local) | `interfaz._contar_accion` y `_acciones_en_sesion` |
-| Módulos e importaciones | paquetes `gestor` y `juego` |
+| Módulos e importaciones | Paquetes `gestor` y `juego` |
 | Clases, objetos, `__init__`, `self` | `Jugador`, `Repositorio`, `Servicio`, `Juego`, `Pajaro` |
 | **Propiedades** (`@property`, `setter`) | `Jugador.monedas` (valida), `Jugador.nivel` (calculada), `Servicio.repo` |
 | **Encapsulamiento** | `Jugador._monedas`, `Repositorio._jugadores` + vistas de solo lectura |
 | Colaboración entre clases | `Servicio` ↔ `Repositorio` ↔ `Jugador`; `Juego` ↔ `Pajaro`/`Tuberia` |
 
 ### 04 · Excepciones, archivos, persistencia y POO
+
 | Tema | Dónde verlo |
 |---|---|
 | Validaciones y `raise` | `validadores.py`, `Jugador.monedas` (setter) |
-| `try` / `except` | casi todos los módulos |
+| `try` / `except` | Casi todos los módulos |
 | **`else`** | `almacenamiento.cargar`, `bitacora.registrar` |
 | **`finally`** | `almacenamiento.guardar` (borra el `.tmp` siempre) |
 | **Archivos de texto** | `bitacora.py` (modo `"a"`), `ExportadorTXT` |
@@ -131,8 +135,21 @@ Variables de entorno opcionales: `FLAPPY_DATOS=/otra/carpeta` cambia dónde se g
 
 ## Reglas del juego (resumen)
 
-* Cada tubería superada = 1 punto. Medalla: bronce ≥ 10, plata ≥ 20, oro ≥ 40, platino ≥ 100.
-* Monedas = `(puntaje // 5) × multiplicador` (fácil 1, normal 2, difícil 3).
-* Nivel por monedas acumuladas: 30 → 2, 100 → 3, 250 → 4, 500 → 5.
-* Skins: rojo 50, dorado 150, fantasma 300 monedas.
-* Dificultad **difícil**: hueco más pequeño, más veloz y con tuberías que suben y bajan.
+- Cada tubería superada = 1 punto. Medalla: bronce ≥ 10, plata ≥ 20, oro ≥ 40, platino ≥ 100.
+- Monedas = `(puntaje // 5) × multiplicador` (fácil 1, normal 2, difícil 3).
+- Nivel por monedas acumuladas: 30 → 2, 100 → 3, 250 → 4, 500 → 5.
+- Skins: rojo 50, dorado 150, fantasma 300 monedas.
+- Dificultad **difícil**: hueco más pequeño, más velocidad y tuberías que suben y bajan.
+
+## Distribución de responsabilidades del equipo
+
+| Integrante | Responsabilidad técnica |
+|---|---|
+| **Diana Reyes** | Elaboración de historias de usuario, identificación de requerimientos funcionales y definición de criterios de aceptación. |
+| **Camilo Zárate** | Documentación de historias de usuario y análisis de las necesidades y funcionalidades del sistema. |
+| **Yohan Cuéllar** | Desarrollo e implementación del software en Python, programación de funcionalidades y lógica del juego. |
+| **Jader Posso** | Implementación del gestor de jugadores y partidas, integración de módulos y persistencia de datos. |
+
+**Proyecto:** Flappy Bird · Terminal + Gestor
+
+**Tecnologías:** Python, curses, JSON, CSV y programación orientada a objetos.
