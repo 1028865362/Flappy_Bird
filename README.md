@@ -147,7 +147,7 @@ Variables de entorno opcionales: `FLAPPY_DATOS=/otra/carpeta` cambia dónde se g
 |---|---|
 | **Diana Reyes** | Elaboración de historias de usuario, identificación de requerimientos funcionales y definición de criterios de aceptación. |
 | **Camilo Zárate** | Documentación de historias de usuario y análisis de las necesidades y funcionalidades del sistema. |
-| **Yohan Cuéllar** | Desarrollo e implementación del software en Python, programación de funcionalidades y lógica del juego. |
+| **Yohan Cuellar** | Desarrollo e implementación del software en Python, programación de funcionalidades y lógica del juego. |
 | **Jader Posso** | Implementación del gestor de jugadores y partidas, integración de módulos y persistencia de datos. |
 
 **Proyecto:** Flappy Bird · Terminal + Gestor
